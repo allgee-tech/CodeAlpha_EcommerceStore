@@ -12,6 +12,10 @@ IMAGE_FALLBACKS = {
     "wellness": "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=1000&q=85",
 }
 
+def welcome(request):
+    categories = list(Category.objects.all()[:4])
+    return render(request, "store/welcome.html", {"categories": categories})
+
 def decorate(products):
     for product in products:
         product.display_image = product.images.first()

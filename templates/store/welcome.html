@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Welcome to NOVA MARKET{% endblock %}
+{% block content %}
+<main class="welcome-page">
+  <section class="welcome-hero glass-panel reveal">
+    <div class="welcome-copy">
+      <span class="eyebrow">NOVA MARKET / 01</span>
+      <h1>Objects that make<br><em>space feel like yours.</em></h1>
+      <p>A slower, more considered way to shop for the pieces that shape your everyday rituals.</p>
+      <div class="welcome-actions"><a class="button button-dark" href="{% url 'store:catalogue' %}">Enter the collection <span>&rarr;</span></a><a class="quiet-link" href="#manifesto">See how we curate <span>&darr;</span></a></div>
+    </div>
+    <div class="welcome-orbit" aria-hidden="true"><div class="orbit-ring orbit-ring-one"></div><div class="orbit-ring orbit-ring-two"></div><div class="orbit-core"><span>NM</span><small>EST. 2026</small></div><span class="orbit-label orbit-label-top">quiet utility</span><span class="orbit-label orbit-label-bottom">daily beauty</span></div>
+    <span class="scroll-cue">Scroll to explore <span>&darr;</span></span>
+  </section>
+  <section class="welcome-bento" id="manifesto">
+    <article class="bento-card bento-intro glass-panel reveal"><span class="eyebrow">The point of view</span><h2>Less noise.<br><em>More meaning.</em></h2><p>We look for honest materials, useful forms, and the small details that reward living with them.</p></article>
+    <a class="bento-card bento-image reveal" href="{% url 'store:catalogue' %}?category=home"><span>Home / 01</span><strong>Make room<br>for calm <em>&rarr;</em></strong></a>
+    <a class="bento-card bento-dark reveal" href="{% url 'store:catalogue' %}?category=workspace"><span class="eyebrow">A better desk</span><h3>Focus is<br>a feeling.</h3><span class="bento-arrow">&nearr;</span></a>
+    <div class="bento-card bento-stat reveal"><strong>04</strong><span>ways to<br>begin</span></div>
+    <a class="bento-card bento-category glass-panel reveal" href="{% url 'store:catalogue' %}"><span class="eyebrow">Curated for now</span><h3>Find your<br><em>everyday.</em></h3><span class="bento-arrow">&rarr;</span></a>
+  </section>
+  <section class="welcome-rituals reveal"><div><span class="eyebrow">A simple ritual</span><h2>Choose with<br><em>intention.</em></h2></div><div class="ritual-list"><button class="ritual-step is-active" type="button" data-ritual="01"><span>01</span><strong>Start with a feeling</strong><b>&plus;</b></button><div class="ritual-detail is-open" data-detail="01">Begin with the atmosphere you want to create. Warmth, focus, softness, or a little escape.</div><button class="ritual-step" type="button" data-ritual="02"><span>02</span><strong>Meet the object</strong><b>&plus;</b></button><div class="ritual-detail" data-detail="02">Explore pieces selected for their balance of function, material, and lasting presence.</div><button class="ritual-step" type="button" data-ritual="03"><span>03</span><strong>Live with it</strong><b>&plus;</b></button><div class="ritual-detail" data-detail="03">The best objects disappear into your rhythm, then make you notice them again.</div></div></section>
+  <section class="welcome-final glass-panel reveal"><span class="eyebrow">Ready when you are</span><h2>Take your time.<br><em>Take something home.</em></h2><a class="button button-dark" href="{% url 'store:catalogue' %}">Explore NOVA MARKET <span>&rarr;</span></a></section>
+</main>
+{% endblock %}
