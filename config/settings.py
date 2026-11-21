@@ -14,11 +14,12 @@ SECRET_KEY = env("SECRET_KEY", default="dev-only-change-me")
 if not DEBUG and (not SECRET_KEY or SECRET_KEY == "dev-only-change-me"):
     raise ImproperlyConfigured("SECRET_KEY must be set to a unique production secret when DEBUG=False.")
 render_hostname = env("RENDER_EXTERNAL_HOSTNAME", default="")
-default_allowed_hosts = ["127.0.0.1", "localhost", "testserver"] if DEBUG else ([render_hostname] if render_hostname else [])
+primary_domain = env("PRIMARY_DOMAIN", default="noeva-market.onrender.com")
+default_allowed_hosts = ["127.0.0.1", "localhost", "testserver"] if DEBUG else list(dict.fromkeys(filter(None, [primary_domain, render_hostname])))
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=default_allowed_hosts)
 if not DEBUG and not ALLOWED_HOSTS:
     raise ImproperlyConfigured("ALLOWED_HOSTS must be configured when DEBUG=False.")
-default_csrf_origins = [f"https://{render_hostname}"] if render_hostname else []
+default_csrf_origins = [f"https://{domain}" for domain in dict.fromkeys(filter(None, [primary_domain, render_hostname]))]
 CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=default_csrf_origins)
 
 INSTALLED_APPS = [

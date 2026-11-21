@@ -1,6 +1,8 @@
 # NOVA MARKET
 
-Premium full-stack e-commerce application built for the CodeAlpha Full Stack Development Internship.
+NOVA MARKET is a premium, full-stack Django e-commerce storefront for thoughtfully selected everyday objects. It combines a responsive catalogue, secure session and account carts, Cash on Delivery checkout, order management, inventory controls, and a versioned REST API behind a tactile editorial shopping experience.
+
+Live domain: [noeva-market.onrender.com](https://noeva-market.onrender.com)
 
 ## Features
 
