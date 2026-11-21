@@ -58,6 +58,7 @@ Production must provide:
 - A long random `SECRET_KEY`
 - Explicit `ALLOWED_HOSTS`
 - `CSRF_TRUSTED_ORIGINS` containing the HTTPS site origin
+- On Render, `RENDER_EXTERNAL_HOSTNAME` is used automatically when explicit host values are not supplied
 - PostgreSQL `DATABASE_URL`
 - Secure cookie and HTTPS settings
 - Persistent `MEDIA_ROOT` or object storage for uploads

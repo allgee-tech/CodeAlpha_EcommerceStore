@@ -13,10 +13,13 @@ DEBUG = env("DEBUG")
 SECRET_KEY = env("SECRET_KEY", default="dev-only-change-me")
 if not DEBUG and (not SECRET_KEY or SECRET_KEY == "dev-only-change-me"):
     raise ImproperlyConfigured("SECRET_KEY must be set to a unique production secret when DEBUG=False.")
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["127.0.0.1", "localhost", "testserver"] if DEBUG else [])
+render_hostname = env("RENDER_EXTERNAL_HOSTNAME", default="")
+default_allowed_hosts = ["127.0.0.1", "localhost", "testserver"] if DEBUG else ([render_hostname] if render_hostname else [])
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=default_allowed_hosts)
 if not DEBUG and not ALLOWED_HOSTS:
     raise ImproperlyConfigured("ALLOWED_HOSTS must be configured when DEBUG=False.")
-CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[])
+default_csrf_origins = [f"https://{render_hostname}"] if render_hostname else []
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=default_csrf_origins)
 
 INSTALLED_APPS = [
     "django.contrib.admin", "django.contrib.auth", "django.contrib.contenttypes",
