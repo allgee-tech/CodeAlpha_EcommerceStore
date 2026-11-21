@@ -112,7 +112,7 @@ Run migrations once in a release or pre-deploy step:
 python manage.py migrate
 ```
 
-Do not run migrations from every worker startup. [render.yaml](render.yaml) provides a Render-compatible web service, PostgreSQL database, persistent media disk, health check, build command, pre-deploy migration, and Gunicorn startup. No live deployment URL is claimed because deployment has not been performed.
+Do not run migrations from every worker startup. [render.yaml](render.yaml) provides a Render-compatible web service, PostgreSQL database, persistent media disk, health check, build command, pre-deploy migration, and Gunicorn startup. The current Render service hostname is `noeva-market.onrender.com`.
 
 Docker support is provided by [Dockerfile](Dockerfile):
 
