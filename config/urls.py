@@ -5,6 +5,7 @@ from django.urls import include, path
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 from django.http import JsonResponse
 from django.db import connection
+from django.db.migrations.executor import MigrationExecutor
 
 
 def health(request):
@@ -14,6 +15,9 @@ def health(request):
         with connection.cursor() as cursor:
             cursor.execute("SELECT 1")
             cursor.fetchone()
+        executor = MigrationExecutor(connection)
+        if executor.migration_plan(executor.loader.graph.leaf_nodes()):
+            return JsonResponse({"status": "unhealthy", "database": "ok", "migrations": "pending"}, status=503)
     except Exception:
         return JsonResponse({"status": "unhealthy", "database": "unavailable"}, status=503)
     return JsonResponse({"status": "ok", "database": "ok"})

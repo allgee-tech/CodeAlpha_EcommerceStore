@@ -4,12 +4,12 @@ import environ
 from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-env = environ.Env(DEBUG=(bool, True))
+env = environ.Env(DEBUG=(bool, False))
 env_file = BASE_DIR / ".env"
 if env_file.exists():
     environ.Env.read_env(env_file)
 
-DEBUG = env("DEBUG")
+DEBUG = env.bool("DEBUG", default=False)
 SECRET_KEY = env("SECRET_KEY", default="dev-only-change-me")
 if not DEBUG and (not SECRET_KEY or SECRET_KEY == "dev-only-change-me"):
     raise ImproperlyConfigured("SECRET_KEY must be set to a unique production secret when DEBUG=False.")
